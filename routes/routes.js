@@ -1,4 +1,5 @@
 const gplay = require('google-play-scraper')
+const store = require('app-store-scraper')
 
 const router = (app) => {
     app.get('/', (req, res) => {
@@ -11,6 +12,16 @@ const router = (app) => {
             lang: req.query.lang,
             page: req.query.page,
             throttle: 10,
+        }).then(response => {
+            res.send(response)
+        })
+    })
+
+    app.get('/appstore/reviews', (req, res) => {
+        store.reviews({
+            appId: req.query.id,
+            country: req.query.country,
+            page: req.query.page,
         }).then(response => {
             res.send(response)
         })
