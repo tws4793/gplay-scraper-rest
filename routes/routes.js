@@ -6,7 +6,7 @@ const router = (app) => {
         res.send('Hello World')
     })
 
-    app.get('/play/reviews', (req, res) => {
+    app.get('/api/play/reviews', (req, res) => {
         gplay.reviews({
             appId: req.query.id,
             lang: req.query.lang,
@@ -14,16 +14,20 @@ const router = (app) => {
             throttle: 10,
         }).then(response => {
             res.send(response)
+        }).catch(err => {
+            res.send({'message':'error'})
         })
     })
 
-    app.get('/appstore/reviews', (req, res) => {
+    app.get('/api/appstore/reviews', (req, res) => {
         store.reviews({
-            appId: req.query.id,
+            id: req.query.id,
             country: req.query.country,
             page: req.query.page,
         }).then(response => {
             res.send(response)
+        }).catch(err => {
+            res.send({'message':'error'})
         })
     })
 }
