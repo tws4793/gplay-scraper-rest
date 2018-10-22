@@ -1,10 +1,10 @@
 version: '3'
 
 services:
-  gplay-scraper:
+  app-scraper:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
       - 3000:3000
-    image: tws/gplay-scraper
+    image: app-scraper
